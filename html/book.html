@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ticket</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/showList.css">
+<body>
+    <div id="title">
+        <h1>Book Ticket</h1>
+    </div>
+    <div id="list" class="container">
+        <!-- <div class="box">
+            <h3>Show Name: ${showName}</h3>
+            <h3>Show Date: ${dateOfShow}</h3>
+            <h3>Show Time: ${startTime} to ${endTime}</h3>
+            <h3>Number of Tickets Sold: ${numOfTickets}</h3>
+        </div> -->
+        <!-- <button id="bal">Balcony</button>
+        <button id="nor">Normal</button> -->
+    </div>
+    <script>
+        var existingShows=JSON.parse(localStorage.getItem("Shows"));
+        if(existingShows!=null)
+        {
+            var len=existingShows.length;
+            console.log(len);
+            for(let i=0;i<len;i++)
+            {
+                // console.log(existingShows[i]);
+                var showName=existingShows[i].name;
+                var dateOfShow=existingShows[i].date;
+                var startTime=existingShows[i].start;
+                var endTime=existingShows[i].end;
+
+                var numOfBalSeats=existingShows[i].numOfBalSeats;
+                var priceOfBalSeat=existingShows[i].priceOfBalSeat;
+                var numOfNorSeats=existingShows[i].numOfNorSeats;
+                var priceOfNorSeat=existingShows[i].priceOfNorSeat;
+                console.log(numOfBalSeats);
+                // let numOfTickets=0;
+                let available1=numOfBalSeats;
+                let available2=numOfNorSeats;
+                var totalTickets=JSON.parse(localStorage.getItem(showName));
+                if(totalTickets!=null) 
+                {
+                    numOfBalSeatsBooked=totalTickets.numOfBalSeatsBooked;
+                    numOfNorSeatsBooked=totalTickets.numOfNorSeatsBooked;
+                    available1=numOfBalSeats-numOfBalSeatsBooked;
+                    available2=numOfNorSeats-numOfNorSeatsBooked;
+                }
+                document.getElementById("list").innerHTML+=`<div class="box">
+                    <div>Show Name: ${showName}</div>
+                    <div>Show Date: ${dateOfShow}</div>
+                    <div>Show Time: ${startTime} to ${endTime}</div>
+                    <div>Balcony Seats: ${available1}</div>
+                    <div>Normal Seats: ${available2}</div>
+                    <button class="btn" id="bal" onclick="book(1,showName,${available1})">Book Balcony</button>
+                    <button class="btn" id="nor" onclick="book(2,showName,${available2})">Book Normal</button>
+                </div>`;
+            }
+        }
+
+        function book(type,showName,avail)
+        {   
+            var totalTickets=JSON.parse(localStorage.getItem(showName));
+            // console.log(totalTickets);
+            if(type==1)
+            {
+                if(avail<0)
+                {
+                    alert("Not Available");
+                    return;
+                }
+                console.log("hello");
+                if(totalTickets!=null) 
+                {
+                    var t=totalTickets.numOfBalSeatsBooked;
+                    t++;
+                    totalTickets.numOfBalSeatsBooked=t;
+                    // console.log(t);
+                }
+                // const myCurrSP = localStorage.getItem(currSP);
+                // const myPass2 = JSON.parse(myPassString2);
+                // var numOfTickets=myPass2.numOfTickets+1;
+                // myPass2.numOfTickets=numOfTickets;
+                // localStorage.setItem(currSP,JSON.stringify(myPass2));
+                alert("1 Balcony Ticket Booked");
+            }
+            else if(type==2)
+            {
+                if(avail<0)
+                {
+                    alert("Not Available");
+                    return;
+                }
+                if(totalTickets!=null) 
+                {
+                    var t=totalTickets.numOfNorSeatsBooked;
+                    t++;
+                    totalTickets.numOfNorSeatsBooked=t;
+                }
+                alert("1 Normal Ticket Booked");
+            }
+            const currSP=localStorage.getItem('currSP');
+            const myCurrSP = localStorage.getItem(currSP);
+            const myPass2 = JSON.parse(myCurrSP);
+            var n=myPass2.numOfTickets;
+            n++;
+            myPass2.numOfTickets=n;
+            // console.log(n);
+            localStorage.setItem(currSP,JSON.stringify(myPass2));
+            localStorage.setItem(showName,JSON.stringify(totalTickets));
+        }
+        // localStorage.removeItem("Shows");
+    </script>
+</body>
+</html>

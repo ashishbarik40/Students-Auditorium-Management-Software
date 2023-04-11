@@ -1,0 +1,70 @@
+body{
+    background-color: rgba(157, 88, 221,0.7);
+    font-family: 'Roboto', sans-serif;
+}
+#title{
+    padding: 20px 0px;
+    color: whitesmoke;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+/* .container{
+    
+} */
+.btn{
+    font-family: 'Roboto', sans-serif;
+    margin: 0px 10px;
+    background-color: rgb(97, 23, 166);
+    color: white;
+    /* button's color is by default black so we have to make it white */
+    padding: 8px 3px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.form-group{
+    display: grid;
+    gap: 10px 5px;
+    /* align-items: center;
+    justify-content: center; */
+    grid-template-areas: 'C1 C2'
+    'C3 C3';
+}
+.c1{
+    grid-area: C1;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items:last baseline;
+}
+.c2{
+    grid-area: C2;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+}
+.c3{
+    grid-area: C3;
+}
+.form-group input{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 10px;
+    width: 300px;
+    height: 20px;
+    margin: 8px 0px;
+    font-size: 14px;
+    /* border: 2px solid rgb(112, 108, 108); */
+    /* border-radius: 17px; */
+}
+/* .form-group input[type="time"]{
+    width: 200px;
+} */
+.form-group button{
+    display: block;
+    width: 23%;
+    margin: 17px auto;
+    margin-bottom: 25px;
+}

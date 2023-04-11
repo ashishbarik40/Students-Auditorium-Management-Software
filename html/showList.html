@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show List</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/showList.css">
+<body>
+    <div id="title">
+        <h1>Show List</h1>
+    </div>
+    <div id="list" class="container">
+        <!-- <div class="box">
+            <h3>Show Name: ${showName}</h3>
+            <h3>Show Date: ${dateOfShow}</h3>
+            <h3>Show Time: ${startTime} to ${endTime}</h3>
+            <h3>Number of Tickets Sold: ${numOfTickets}</h3>
+        </div> -->
+    </div>
+    <script>
+        var existingShows=JSON.parse(localStorage.getItem("Shows"));
+        if(existingShows!=null)
+        {
+            var len=existingShows.length;
+            console.log(len);
+            for(let i=0;i<len;i++)
+            {
+                // console.log(existingShows[i]);
+                var showName=existingShows[i].name;
+                var dateOfShow=existingShows[i].date;
+                var startTime=existingShows[i].start;
+                var endTime=existingShows[i].end;
+
+                var numOfBalSeats=existingShows[i].numOfBalSeats;
+                var priceOfBalSeat=existingShows[i].priceOfBalSeat;
+                var numOfNorSeats=existingShows[i].numOfNorSeats;
+                var priceOfNorSeat=existingShows[i].priceOfNorSeat;
+                console.log(showName);
+                let numOfTickets=0;
+                let amount1=0;
+                let amount2=0;
+                let percent1=0;
+                let percent2=0;
+                var totalTickets=JSON.parse(localStorage.getItem(showName));
+                if(totalTickets!=null) 
+                {
+                    numOfBalSeatsBooked=totalTickets.numOfBalSeatsBooked;
+                    numOfNorSeatsBooked=totalTickets.numOfNorSeatsBooked;
+                    percent1=(numOfBalSeatsBooked/numOfBalSeats)*100;
+                    amount1=numOfBalSeatsBooked*priceOfBalSeat;
+                    percent2=(numOfNorSeatsBooked/numOfNorSeats)*100;
+                    amount2=numOfNorSeatsBooked*priceOfNorSeat;
+                }
+                document.getElementById("list").innerHTML+=`<div class="box">
+                    <div>Show Name: ${showName}</div>
+                    <div>Show Date: ${dateOfShow}</div>
+                    <div>Show Time: ${startTime} to ${endTime}</div>
+                    <div>Percentage of Balcony Seats Booked: ${percent1}</div>
+                    <div>Amount collected(Balcony Seats): ${amount1}</div>
+                    <div>Percentage of Normal Seats Booked: ${percent1}</div>
+                    <div>Amount collected(Normal Seats): ${amount2}</div>
+                </div>`;
+            }
+        }
+        // localStorage.removeItem("Shows");
+    </script>
+</body>
+</html>

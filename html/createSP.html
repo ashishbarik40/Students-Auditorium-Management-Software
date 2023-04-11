@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Sales Person</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/createSP.css">
+<body>
+    <div id="title">
+        <h1>New Sales Person</h1>
+    </div>
+    <div class="container">
+        <form id="form" onsubmit="create()">
+            <input type="text" name="name" placeholder="Enter Sales Person's Name">
+            <input type="tel" name="phone" placeholder="Enter Sales Person's Phone Number">
+            <input type="text" name="uname" placeholder="Enter Username">
+            <input type="text" name="pwd" placeholder="Enter Password">
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showPopUp(uname,pwd)
+        {
+            const decision=confirm(`Account Created !!! \n Username:${uname}\n Password:${pwd}\nWant to add new Sales Person ?- Click OK \nGo to Dashboard- Click Cancel`);
+            if(decision==false)
+            {
+                document.forms[0].action="sm.html";
+            }
+        }
+        function create()
+        {
+            var name=document.getElementById("form").elements[0].value;
+            var phone=document.getElementById("form").elements[1].value;
+            var uname=document.getElementById("form").elements[2].value;
+            var pwd=document.getElementById("form").elements[3].value;
+            const mySp={name:name, phone:phone, username:uname, password:pwd, type:"2"};
+            // const mySpString=JSON.stringify(mySp);
+            // localStorage.setItem("sP",mySpString);
+
+            // to add new sales person to array of sales person
+            // SP for Sales Person
+            var existingSP=JSON.parse(localStorage.getItem("SP"));
+            if(existingSP==null) existingSP=[];
+            existingSP.push(mySp);
+            localStorage.setItem("SP",JSON.stringify(existingSP));
+            var len=existingSP.length;
+            // console.log(len);
+            // for(let i=0;i<len;i++)
+            // {
+            //     console.log(existingSP[i]);
+            // }
+
+            const myPass={password:pwd, numOfTickets:"0"};
+            const myPassString=JSON.stringify(myPass);
+            localStorage.setItem(uname,myPassString);
+            showPopUp(uname,pwd);
+        }
+    </script>
+</body>
+</html>

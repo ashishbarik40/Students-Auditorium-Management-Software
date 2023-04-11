@@ -1,0 +1,57 @@
+body {
+  background-color: rgba(157, 88, 221,0.7);
+  font-family: 'Roboto', sans-serif;
+}
+#title{
+  padding: 25px 0px;
+  color: whitesmoke;
+  font-size: 20px;
+  display: flex;
+  position: absolute;
+  left: 410px;
+  top: 100px;
+}
+.login {
+  overflow: hidden;
+  padding: 40px 30px 30px 30px;
+  position: relative;
+  left: 400px;
+  top: 200px;
+  width: 400px;
+  background-color: rgb(97, 23, 166);
+  box-shadow: 3px 3px 8px 2px rgb(67, 7, 67);
+  border-radius: 8px;
+}
+.login>input {
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background: white;
+  width: 100%;
+  border: 0;
+  padding: 10px 10px;
+  margin: 15px -10px;
+  }
+  
+.login>button {
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(181, 135, 224, 0.7);
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 80px;
+  border: 0;
+  padding: 10px 0;
+  margin-top: 10px;
+  margin-left: -5px;
+  border-radius: 5px;
+}
+
+a{
+  text-decoration: none;
+  color: rgba(white, 0.6);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}

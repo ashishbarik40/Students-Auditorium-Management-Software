@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Person List</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/showList.css">
+<body>
+    <div id="title">
+        <h1>Sales Person List</h1>
+    </div>
+    <div id="list" class="container">
+        <!-- <div class="box">
+            <h3>Sales Person's Name: ${name}</h3>
+            <h3>Total Tickets sold by ${name}: ${numOfTickets}</h3>
+            <h3>Commision: ${comm}</h3>
+        </div> -->
+    </div>
+    <script>
+        var existingSP=JSON.parse(localStorage.getItem("SP"));
+        if(existingSP!=null)
+        {
+            var len=existingSP.length;
+            console.log(len);
+            for(let i=0;i<len;i++)
+            {
+                console.log(existingSP[i]);
+                var name=existingSP[i].name;
+                const myPassString2 = localStorage.getItem(name);
+                const myPass2 = JSON.parse(myPassString2);
+                var numOfTickets=myPass2.numOfTickets;
+                var comm=numOfTickets*0.05*100;
+                document.getElementById("list").innerHTML+=`<div class="box">
+                    <h3>Sales Person's Name: ${name}</h3>
+                    <h3>Total Tickets sold by ${name}: ${numOfTickets}</h3>
+                    <h3>Commission: ${comm}</h3>
+                </div>`;
+            }
+        }
+        // localStorage.removeItem("SP");
+    </script>
+</body>
+</html>

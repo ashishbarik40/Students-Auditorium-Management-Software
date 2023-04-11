@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMS | Login</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/login.css">
+<body>
+    <div id="title">
+        <h2>SAMS Member Login</h2>
+    </div>
+    <form class="login" id="login" action="" onsubmit="clicked()">
+        <input type="text" name="uname" placeholder="Username">
+        <input type="password" name="pwd" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    <script>
+        function hello() {
+            console.log("test");
+        }
+        const myTypeString2 = localStorage.getItem('userType');
+        const myType2 = JSON.parse(myTypeString2);
+        console.log(myType2);  
+        var tp=myType2.t;
+        console.log(tp);
+        // console.log(document.getElementById("title"));
+
+        if(tp==1) document.getElementById("title").children[0].innerHTML="SAMS | Show Manager";
+        else if(tp==2) document.getElementById("title").children[0].innerHTML="SAMS | Sales Person";
+        else if(tp==3) document.getElementById("title").children[0].innerHTML="SAMS | Accounts Clerk";
+        // var username=document.getElementById("login").elements[0];
+        // console.log(username);
+        // var password=document.getElementById("login").elements[1];
+        // console.log(password);
+        // console.log(document.forms[0]);
+        // localStorage.clear();
+        function clicked()
+        {
+            var username=document.getElementById("login").elements[0].value;
+            var password=document.getElementById("login").elements[1].value;
+            // console.log(document.forms[0]);
+            if(tp==1)
+            {
+                // console.log(username);
+                // console.log(password);
+                if(username=='ShowManager'&&password=="12345")
+                {
+                    document.forms[0].action="sm.html";
+                }
+                else
+                {
+                    alert("Invalid Username and Password");
+                }
+            }
+            else if(tp==3)
+            {
+                if(username=='AccountsClerk'&&password=="54321")
+                {
+                    document.forms[0].action="ac.html";
+                }
+                else
+                {
+                    alert("Invalid Username and Password");
+                }
+            }
+            else if(tp==2)
+            {
+                const myPassString2 = localStorage.getItem(username);
+                const myPass2 = JSON.parse(myPassString2);
+                var pass=myPass2.password;
+                localStorage.setItem('currSP',username);
+                // console.log(pass);
+                // var uname=mySp2.username;
+                // var pwd=mySp2.password;
+                // console.log(uname);
+
+                if(pass==password)
+                {
+                    document.forms[0].action="sp.html";
+                }
+                else
+                {
+                    alert("Invalid Username and Password");
+                }
+            }
+        }
+    </script>
+    <!-- <a href="https://codepen.io/davinci/" target="_blank">check my other pens</a> -->
+</body>
+</html>

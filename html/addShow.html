@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Show</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/addShow.css">
+<body>
+    <div id="title">
+        <h1>Add New Show</h1>
+    </div>
+    <form id="form" action="" class="form-group" onsubmit="add()">
+        <div class="c1">
+            Show:<input type="text" name="show" placeholder="Enter Show Name">
+            Date:<input type="date" name="date" placeholder="Enter Date">
+            Start Time:<input type="time" name="time" placeholder="Enter Time">
+            End Time:<input type="time" name="duration" placeholder="Enter Duration of the Show">             
+        </div>
+        <div class="c2">
+            No. of Balcony Seats:<input type="number" name="noOfBalSeats" placeholder="">                
+            Price of Balcony Seats:<input type="number" name="priceOfBalSeats" placeholder="">                
+            No. of Normal Seats:<input type="number" name="noOfBalSeats" placeholder="">                
+            Price of Normal Seats:<input type="number" name="priceOfBalSeats" placeholder="">   
+        </div>
+        <div class="c3">
+            <button class="btn">Submit</button>
+        </div>
+    </form>
+    <script>
+        function add()
+        {
+            var showName=document.getElementById("form").children[0].children[0].value;
+            var dateOfShow=document.getElementById("form").children[0].children[1].value;
+            var startTime=document.getElementById("form").children[0].children[2].value;
+            var endTime=document.getElementById("form").children[0].children[3].value;
+            console.log(showName);
+
+            var numOfBalSeats=document.getElementById("form").children[1].children[0].value;
+            var priceOfBalSeat=document.getElementById("form").children[1].children[1].value;
+            var numOfNorSeats=document.getElementById("form").children[1].children[2].value;
+            var priceOfNorSeat=document.getElementById("form").children[1].children[3].value;
+            console.log(numOfBalSeats);
+            
+            const myShow={name:showName, date:dateOfShow, start:startTime, end:endTime, numOfBalSeats:numOfBalSeats, priceOfBalSeat:priceOfBalSeat,
+                numOfNorSeats:numOfNorSeats, priceOfNorSeat:priceOfNorSeat};
+
+            var existingShows=JSON.parse(localStorage.getItem("Shows"));
+            if(existingShows==null) existingShows=[];
+            existingShows.push(myShow);
+            localStorage.setItem("Shows",JSON.stringify(existingShows));
+            
+            const myS={numOfBalSeatsBooked:"0",numOfNorSeatsBooked:"0"};
+            localStorage.setItem(showName,JSON.stringify(myS));
+
+            const decision=confirm("Show Added !!! \nWant to add new show ?- Click OK \nGo to Dashboard- Click Cancel");
+            if(decision==false)
+            {
+                document.forms[0].action="sm.html";
+            }
+        }
+    </script>
+</body>
+</html>
